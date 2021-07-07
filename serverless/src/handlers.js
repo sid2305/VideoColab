@@ -8,6 +8,8 @@ const oneDayFromNow = Math.floor(Date.now() / 1000) + 60 * 60 * 24;
 // Read resource names from the environment
 const meetingsTableName = process.env.MEETINGS_TABLE_NAME;
 const attendeesTableName = process.env.ATTENDEES_TABLE_NAME;
+const sqsQueueArn = process.env.SQS_QUEUE_ARN;
+const provideQueueArn = process.env.USE_EVENT_BRIDGE === 'false';
 
 function uuid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -82,6 +84,15 @@ const putAttendee = async(title, attendeeId, name) => {
   }).promise();
 }
 
+function getNotificationsConfig() {
+  if (provideQueueArn) {
+    return  {
+      SqsQueueArn: sqsQueueArn,
+    };
+  }
+  return {}
+}
+
 function simplifyTitle(title) {
   // Strip out most symbolic characters and whitespace and make case insensitive,
   // but preserve any Unicode characters outside of the ASCII range.
@@ -110,6 +121,7 @@ exports.createMeeting = async(event, context, callback) => {
     const request = {
       ClientRequestToken: uuid(),
       MediaRegion: region,
+      NotificationsConfiguration: getNotificationsConfig(),
     };
     console.info('Creating new meeting: ' + JSON.stringify(request));
     meetingInfo = await chime.createMeeting(request).promise();
@@ -150,6 +162,7 @@ exports.join = async(event, context, callback) => {
     const request = {
       ClientRequestToken: uuid(),
       MediaRegion: region,
+      NotificationsConfiguration: getNotificationsConfig(),
     };
     console.info('Creating new meeting: ' + JSON.stringify(request));
     meetingInfo = await chime.createMeeting(request).promise();

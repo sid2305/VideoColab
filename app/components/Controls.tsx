@@ -1,6 +1,3 @@
-// Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 import classNames from 'classnames/bind';
 import React, { useContext, useEffect, useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -116,7 +113,7 @@ export default function Controls(props: Props) {
             } else {
               chime?.audioVideo?.realtimeMuteLocalAudio();
             }
-            // Adds a slight delay to close the tooltip before rendering the updated text in it
+
             await new Promise(resolve => setTimeout(resolve, 10));
           }}
         >
@@ -127,6 +124,7 @@ export default function Controls(props: Props) {
           )}
         </button>
       </Tooltip>
+
       <Tooltip
         tooltip={
           videoStatus === VideoStatus.Disabled
@@ -140,7 +138,7 @@ export default function Controls(props: Props) {
             enabled: videoStatus === VideoStatus.Enabled
           })}
           onClick={async () => {
-            // Adds a slight delay to close the tooltip before rendering the updated text in it
+
             await new Promise(resolve => setTimeout(resolve, 10));
             if (videoStatus === VideoStatus.Disabled) {
               setVideoStatus(VideoStatus.Loading);
@@ -154,7 +152,7 @@ export default function Controls(props: Props) {
                 chime?.audioVideo?.startLocalVideoTile();
                 setVideoStatus(VideoStatus.Enabled);
               } catch (error) {
-                // eslint-disable-next-line
+                
                 console.error(error);
                 setVideoStatus(VideoStatus.Disabled);
               }
@@ -205,6 +203,34 @@ export default function Controls(props: Props) {
             }}
           >
             <i className="fas fa-times" />
+          </button>
+        </Tooltip>
+      )}
+      {viewMode !== ViewMode.ScreenShare && (
+        <Tooltip
+          tooltip={intl.formatMessage({ id: 'Controls.whiteboard' })}
+        >
+          <button
+            type="button"
+            className={cx('whiteboard')}
+            onClick={() => {window.open('http://zd2036-whiteboard.s3-website-us-east-1.amazonaws.com/', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
+            }}
+          >
+            <i className="fas fa-pencil-alt"/>
+          </button>
+        </Tooltip>
+      )}
+      {viewMode !== ViewMode.ScreenShare && (
+        <Tooltip
+          tooltip={intl.formatMessage({ id: 'Controls.workdocs' })}
+        >
+          <button
+            type="button"
+            className={cx('workdocs')}
+            onClick={() => {window.open('https://rahulbarhate.awsapps.com/workdocs', '_blank', 'top=500,left=200,frame=false,nodeIntegration=no')
+            }}
+          >
+            <i className="fas fa-file"/>
           </button>
         </Tooltip>
       )}

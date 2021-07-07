@@ -8,6 +8,7 @@ const path = require('path');
 let region = '';
 let bucket = '';
 let stack = '';
+let useEventBridge = false;
 let appName = '';
 
 function usage() {
@@ -105,6 +106,10 @@ function parseArgs() {
       case '-s':
       case '--stack-name':
         stack = getArgOrExit(++i, args);
+        break;
+      case '-e':
+      case '--event-bridge':
+        useEventBridge = true;
         break;
       default:
         console.log(`Invalid argument ${args[i]}`);
@@ -244,6 +249,8 @@ ${cssStyle}
     './build/packaged.yaml',
     '--stack-name',
     `${stack}`,
+    '--parameter-overrides',
+    `UseEventBridge=${useEventBridge}`,
     '--capabilities',
     'CAPABILITY_IAM',
     '--region',

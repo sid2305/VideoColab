@@ -60,6 +60,12 @@ export default function Login() {
                   <FormattedMessage id="Login.teacherToggleDescription2" />
                 </li>
               </ul>
+              <li>
+                <FormattedMessage id="Login.teacherDescription5" />
+              </li>
+              <li>
+                <FormattedMessage id="Login.teacherDescription6" />
+              </li>
             </ul>
             <button
               type="button"
@@ -105,6 +111,12 @@ export default function Login() {
                   <FormattedMessage id="Login.studentToggleDescription2" />
                 </li>
               </ul>
+              <li>
+                <FormattedMessage id="Login.studentDescription5" />
+              </li>
+              <li>
+                <FormattedMessage id="Login.studentDescription6" />
+              </li>
             </ul>
             <button
               type="button"

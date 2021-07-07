@@ -163,6 +163,8 @@ export default class MenuBuilder {
         }
       ]
     };
+
+    
     const subMenuWindow: MenuItemConstructorOptions = {
       label: 'Window',
       submenu: [
@@ -177,6 +179,7 @@ export default class MenuBuilder {
         { label: 'Bring All to Front', selector: 'arrangeInFront:' }
       ]
     };
+
     const subMenuHelp: MenuItemConstructorOptions = {
       label: 'Help',
       submenu: [

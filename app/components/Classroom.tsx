@@ -142,9 +142,9 @@ export default function Classroom() {
                   <FormattedMessage id="Classroom.classroom" />
                 </div>
               </div>
-              <div className={cx('deviceSwitcher')}>
-                <DeviceSwitcher />
-              </div>
+              
+              
+              
               <div className={cx('roster')}>
                 <Roster />
               </div>

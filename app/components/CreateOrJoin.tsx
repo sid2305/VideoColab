@@ -1,12 +1,10 @@
 // Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
-
 import classNames from 'classnames/bind';
 import React, { useContext, useEffect, useState } from 'react';
 import Dropdown, { Option } from 'react-dropdown';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Link, useHistory } from 'react-router-dom';
-
 import ChimeSdkWrapper from '../chime/ChimeSdkWrapper';
 import routes from '../constants/routes.json';
 import getChimeContext from '../context/getChimeContext';
@@ -15,14 +13,11 @@ import ClassMode from '../enums/ClassMode';
 import RegionType from '../types/RegionType';
 import styles from './CreateOrJoin.css';
 import OptionalFeature from '../enums/OptionalFeature';
-
 const cx = classNames.bind(styles);
-
-const optionalFeatures = [
-  { label: 'None', value: OptionalFeature.None },
-  { label: 'Enable Simulcast For Chrome', value: OptionalFeature.Simulcast }
-];
-
+ const optionalFeatures = [
+   { label: 'None', value: OptionalFeature.None },
+   { label: 'Enable Simulcast For Chrome', value: OptionalFeature.Simulcast }
+ ];
 export default function CreateOrJoin() {
   const chime = useContext(getChimeContext()) as ChimeSdkWrapper;
   const [state] = useContext(getUIStateContext());
@@ -32,14 +27,12 @@ export default function CreateOrJoin() {
   const [optionalFeature, setOptionalFeature] = useState('');
   const history = useHistory();
   const intl = useIntl();
-
-  useEffect(() => {
-    setOptionalFeature(optionalFeatures[0].value);
-    (async () => {
-      setRegion(await chime?.lookupClosestChimeRegion());
-    })();
-  }, []);
-
+   useEffect(() => {
+     setOptionalFeature(optionalFeatures[0].value);
+     (async () => {
+       setRegion(await chime?.lookupClosestChimeRegion());
+     })();
+   }, []);
   return (
     <div className={cx('createOrJoin')}>
       <div className={cx('formWrapper')}>
@@ -92,9 +85,9 @@ export default function CreateOrJoin() {
                 menuClassName={cx('menu')}
                 arrowClassName={cx('arrow')}
                 value={region}
-                options={
-                  region ? chime?.supportedChimeRegions : ([] as RegionType[])
-                }
+                 options={
+                   region ? chime?.supportedChimeRegions : ([] as RegionType[])
+                 }
                 disabled={!region}
                 onChange={(selectedRegion: RegionType) => {
                   setRegion(selectedRegion);
@@ -103,22 +96,6 @@ export default function CreateOrJoin() {
               />
             </div>
           )}
-
-          <div className={cx('regionsList')}>
-            <Dropdown
-              className={cx('dropdown')}
-              controlClassName={cx('control')}
-              placeholderClassName={cx('placeholder')}
-              menuClassName={cx('menu')}
-              arrowClassName={cx('arrow')}
-              value={optionalFeature}
-              options={optionalFeatures}
-              onChange={(selectedFeature: Option) => {
-                setOptionalFeature(selectedFeature.value);
-              }}
-              placeholder={optionalFeatures[0].label}
-            />
-          </div>
 
           <button className={cx('button')} type="submit">
             <FormattedMessage id="CreateOrJoin.continueButton" />

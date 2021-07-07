@@ -1,37 +1,42 @@
-// Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 export default {
-  'Login.title': `Tell me about you`,
-  'Login.teacherTitle': `Teachers can`,
-  'Login.teacherDescription1': `Create a classroom`,
+  'Login.title': `Meeting Room`,
+  'Login.teacherTitle': `As a host you can:`,
+  'Login.teacherDescription1': `Create a meeting room`,
   'Login.teacherDescription2': `Share audio, video, and screen`,
   'Login.teacherDescription3': `Send chat messages`,
   'Login.teacherDescription4': `Toggle focus:`,
-  'Login.teacherToggleDescription1': `Focus mutes all students`,
-  'Login.teacherToggleDescription2': `Focus turns off student chat`,
-  'Login.teacherButton': `I'm a teacher`,
+  'Login.teacherToggleDescription1': `Focus mutes all participants`,
+  'Login.teacherToggleDescription2': `Focus turns off participants' chat`,
+  //change
+  'Login.teacherDescription5': `Create and edit documents online while collaborating with other users in real-time`,
+  'Login.teacherDescription6': `Pen-down or sketch your ideas with others`,
+  //change ends
+  'Login.teacherButton': `I want to host a meeting`,
 
-  'Login.studentTitle': `Students can`,
-  'Login.studentDescription1': `Join a classroom`,
+  'Login.studentTitle': `As a participant you can:`,
+  'Login.studentDescription1': `Join a meeting room`,
   'Login.studentDescription2': `Share video`,
   'Login.studentDescription3': `Raise hand`,
   'Login.studentDescription4': `When focus is off:`,
   'Login.studentToggleDescription1': `Unmute and share audio`,
   'Login.studentToggleDescription2': `Send chat messages`,
-  'Login.studentButton': `I'm a student`,
+    //change
+  'Login.studentDescription5': `Edit Documents online collaborating with users in real-time`,
+  'Login.studentDescription6': `Pen-down or sketch your ideas with others`,
+    //change ends
+  'Login.studentButton': `I want to join a meeting`,
 
-  'CreateOrJoin.teacherTitle': `Create or join a classroom`,
-  'CreateOrJoin.studentTitle': `Join a classroom`,
-  'CreateOrJoin.titlePlaceholder': `Classroom`,
+  'CreateOrJoin.teacherTitle': `Create or join a meeting room`,
+  'CreateOrJoin.studentTitle': `Join a Meeting Room`,
+  'CreateOrJoin.titlePlaceholder': `Meeting ID`,
   'CreateOrJoin.namePlaceholder': `Your name`,
   'CreateOrJoin.continueButton': `Continue`,
-  'CreateOrJoin.notTeacherLink': `Not a teacher? Click here.`,
-  'CreateOrJoin.notStudentLink': `Not a student? Click here.`,
-  'CreateOrJoin.classRoomDoesNotExist': `Classroom does not exist`,
+  'CreateOrJoin.notTeacherLink': `Not a host? Click here.`,
+  'CreateOrJoin.notStudentLink': `Not a participant? Click here.`,
+  'CreateOrJoin.classRoomDoesNotExist': `Meeting Room does not exist`,
   'CreateOrJoin.serverError': `Server error`,
 
-  'Classroom.classroom': `Classroom`,
+  'Classroom.classroom': `Meeting Room`,
 
   'RemoteVideoGroup.noVideo': `No one is sharing video`,
 
@@ -39,15 +44,17 @@ export default {
   'DeviceSwitcher.noAudioOutputPlaceholder': `No speaker`,
   'DeviceSwitcher.noVideoInputPlaceholder': `No video device`,
 
-  'Controls.turnOffFocusTooltip': `Turn off focus`,
-  'Controls.turnOnFocusTooltip': `Turn on focus`,
+  'Controls.turnOffFocusTooltip': `Turn off all mics`,
+  'Controls.turnOnFocusTooltip': `Turn on all mics`,
   'Controls.unmuteTooltip': `Unmute`,
   'Controls.muteTooltip': `Mute`,
+  'Controls.whiteboard':'Whiteboard',
+  'Controls.workdocs':'Documents',
   'Controls.turnOnVideoTooltip': `Turn on video`,
   'Controls.turnOffVideoTooltip': `Turn off video`,
   'Controls.shareScreenTooltip': `Share screen`,
-  'Controls.endClassroomTooltip': `End classroom`,
-  'Controls.leaveClassroomTooltip': `Leave classroom`,
+  'Controls.endClassroomTooltip': `End Meeting`,
+  'Controls.leaveClassroomTooltip': `Leave Meeting`,
   'Controls.micMutedInScreenViewMode': `Mic muted`,
   'Controls.focusOnMessage': `Focus on`,
   'Controls.focusOffMessage': `Focus off`,

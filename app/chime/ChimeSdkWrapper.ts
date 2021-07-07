@@ -1,6 +1,3 @@
-// Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 import {
   AsyncScheduler,
   AudioVideoFacade,
@@ -16,6 +13,7 @@ import {
   ReconnectingPromisedWebSocket,
   DefaultActiveSpeakerPolicy
 } from 'amazon-chime-sdk-js';
+
 import { useIntl } from 'react-intl';
 import throttle from 'lodash/throttle';
 
@@ -45,20 +43,7 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
   region: string | null = null;
 
   supportedChimeRegions: RegionType[] = [
-    { label: 'United States (N. Virginia)', value: 'us-east-1' },
-    { label: 'Japan (Tokyo)', value: 'ap-northeast-1' },
-    { label: 'Singapore', value: 'ap-southeast-1' },
-    { label: 'Australia (Sydney)', value: 'ap-southeast-2' },
-    { label: 'Canada', value: 'ca-central-1' },
-    { label: 'Germany (Frankfurt)', value: 'eu-central-1' },
-    { label: 'Sweden (Stockholm)', value: 'eu-north-1' },
-    { label: 'Ireland', value: 'eu-west-1' },
-    { label: 'United Kingdom (London)', value: 'eu-west-2' },
-    { label: 'France (Paris)', value: 'eu-west-3' },
-    { label: 'Brazil (São Paulo)', value: 'sa-east-1' },
-    { label: 'United States (Ohio)', value: 'us-east-2' },
-    { label: 'United States (N. California)', value: 'us-west-1' },
-    { label: 'United States (Oregon)', value: 'us-west-2' }
+    { label: 'United States (N. Virginia)', value: 'us-east-1' }
   ];
 
   currentAudioInputDevice: DeviceType | null = null;
@@ -106,11 +91,7 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
     this.messageUpdateCallbacks = [];
   };
 
-  /*
-   * ====================================================================
-   * regions
-   * ====================================================================
-   */
+  // Code block for regions
   lookupClosestChimeRegion = async (): Promise<RegionType> => {
     let region: string;
     try {
@@ -254,14 +235,6 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
           ) => {
             const baseAttendeeId = new DefaultModality(attendeeId).base();
             if (baseAttendeeId !== attendeeId) {
-              // Don't include the content attendee in the roster.
-              //
-              // When you or other attendees share content (a screen capture, a video file,
-              // or any other MediaStream object), the content attendee (attendee-id#content) joins the session and
-              // shares content as if a regular attendee shares a video.
-              //
-              // For example, your attendee ID is "my-id". When you call meetingSession.audioVideo.startContentShare,
-              // the content attendee "my-id#content" will join the session and share your content.
               return;
             }
 
@@ -365,7 +338,6 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
     this.audioVideo?.start();
   };
 
-  // eslint-disable-next-line
   sendMessage = (topic: string, data: any) => {
     new AsyncScheduler().start(() => {
       this.audioVideo?.realtimeSendDataMessage(
@@ -408,11 +380,7 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
     this.initializeSdkWrapper();
   };
 
-  /**
-   * ====================================================================
-   * Device
-   * ====================================================================
-   */
+  //device
 
   chooseAudioInputDevice = async (device: DeviceType) => {
     try {
@@ -441,11 +409,7 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
     }
   };
 
-  /**
-   * ====================================================================
-   * Observer methods
-   * ====================================================================
-   */
+  // observer methods
 
   audioInputsChanged(freshAudioInputDeviceList: MediaDeviceInfo[]): void {
     let hasCurrentDevice = false;
@@ -598,13 +562,8 @@ export default class ChimeSdkWrapper implements DeviceChangeObserver {
     }
   };
 
-  /**
-   * ====================================================================
-   * Utilities
-   * ====================================================================
-   */
+  // utilities
   private logError = (error: Error) => {
-    // eslint-disable-next-line
     console.error(error);
   };
 }

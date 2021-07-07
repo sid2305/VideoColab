@@ -21,12 +21,6 @@ export default {
             cacheDirectory: true
           }
         }
-      },
-      {
-        test: /\.m?js/,
-        resolve: {
-          fullySpecified: false
-        }
       }
     ]
   },
@@ -45,13 +39,11 @@ export default {
     modules: [path.join(__dirname, '..', 'app'), 'node_modules']
   },
 
-  optimization: {
-    moduleIds: 'named'
-  },
-
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
-    })
+    }),
+
+    new webpack.NamedModulesPlugin()
   ]
 };
